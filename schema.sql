@@ -11,7 +11,7 @@ Create Table patient(
     name varchar(255) NOT null,
     place varchar(255) default null,
     docId int,
-    FOREIGN KEY (docId) REFERENCES doctors(id)
+    FOREIGN KEY (docId) REFERENCES doctor(id)
 );
 
 insert into doctors(name,place,email,password)values("Nagarjun","Banglore","mrnags14@gmail.com","hello21");

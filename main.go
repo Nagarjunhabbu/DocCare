@@ -26,10 +26,10 @@ func main() {
 	dbuser := os.Getenv("DB_USER")
 	dbpass := os.Getenv("DB_PASSWORD")
 	dbhost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv(("DB_Port"))
+	//dbPort := os.Getenv(("DB_Port"))
 
 	//Mysql DB connection
-	sqlObj, connectionError := sql.Open("mysql", dbuser+":"+dbpass+"@tcp("+dbhost+":"+dbPort+")/railway")
+	sqlObj, connectionError := sql.Open("mysql", dbuser+":"+dbpass+"@tcp("+dbhost+":3306)/doccare")
 	if connectionError != nil && sqlObj.Ping() != nil {
 		panic(fmt.Errorf("error opening database: %v", connectionError))
 	}

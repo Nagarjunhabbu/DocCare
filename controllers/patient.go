@@ -3,6 +3,7 @@ package controllers
 import (
 	"DocCare/models"
 	"DocCare/service"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -83,7 +84,8 @@ func (h PatientController) DeletePatient(c echo.Context) error {
 
 // controller func to create new Patient in DB
 func (h PatientController) CreatePatient(c echo.Context) error {
-	docId, _ := strconv.Atoi(c.Request().Header.Get("id"))
+	docId, err := strconv.Atoi(c.Request().Header.Get("id"))
+	fmt.Println(err)
 	var patient models.Patient
 	if err := c.Bind(&patient); err != nil {
 		return err

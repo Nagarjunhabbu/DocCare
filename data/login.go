@@ -14,7 +14,7 @@ type DataLoginInfo struct {
 
 // func to getDoctor  details by passing doctor Name
 func (d DataLoginInfo) GetDoctorByName(docName string) (models.Doctor, error) {
-	query := "select id from doctors where name=?"
+	query := "select id from doctor where name=?"
 	row := d.Sql.QueryRow(query, docName)
 	var t models.Doctor
 	err := row.Scan(&t.Id)
