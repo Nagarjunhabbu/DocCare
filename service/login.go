@@ -1,21 +1,21 @@
 package service
 
 import (
-	"chkdin/data"
-	"chkdin/models"
+	"DocCare/data"
+	"DocCare/models"
 
 	"github.com/golang-jwt/jwt"
 )
 
 type ServiceLogin struct {
-	DataLayer data.DataUserInfo
+	DataLayer data.DataLoginInfo
 }
 
-//Login func
-func (t ServiceLogin) Login(user models.Login) (models.LoginResponse, error) {
-	val, _ := t.DataLayer.GetUserByName(user.Name)
+// Doctor Login func
+func (t ServiceLogin) Login(doctor models.Login) (models.LoginResponse, error) {
+	val, _ := t.DataLayer.GetDoctorByName(doctor.Name)
 	if val.Id <= 0 {
-		val, _ = t.DataLayer.SignUpUser(user)
+		val, _ = t.DataLayer.SignUpDoctor(doctor)
 	}
 	res := generateToken(val)
 	var resp models.LoginResponse
@@ -26,12 +26,12 @@ func (t ServiceLogin) Login(user models.Login) (models.LoginResponse, error) {
 }
 
 //func to generate Auth token
-func generateToken(u models.User) string {
+func generateToken(d models.Doctor) string {
 	//Todo move secret to different place
 	key := "mysecretKey"
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"authorized": true,
-		"user":       u,
+		"id":         d.Id,
 	})
 	string, _ := token.SignedString([]byte(key))
 	return string

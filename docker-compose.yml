@@ -3,10 +3,10 @@ version: '3'
 services:
   db:
     image: mariadb:10.5.8
-    container_name: mysql
+    container_name: mysqlDB
     environment:
       MYSQL_ROOT_PASSWORD: 'root123'
-      MYSQL_DATABASE: 'chkdin'
+      MYSQL_DATABASE: 'doccare'
       MYSQL_USER: 'nagarjun'
       MYSQL_PASSWORD: 'nags123'
     ports:

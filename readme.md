@@ -1,10 +1,10 @@
-- Chkdin Project Description
+- DocCare Project Description
 
 Follow these setup to run the Project:
 
     1. Get the code from Github: 
                 $cd go/src
-                $ git clone https://github.com/Nagarjunhabbu/chkdin.git
+                $ git clone https://github.com/Nagarjunhabbu/DocCare.git
 
 
     2. Install docker :
@@ -23,7 +23,7 @@ Follow these setup to run the Project:
          - $ sudo docker exec -it {containerId} bash
 
          - $mysql -u root -p
-         - $use chkdin;       (to go inside chkdin DB)
+         - $use doccare;       (to go inside chkdin DB)
          
          - run the scripts present in schema.sql file
             
@@ -31,21 +31,21 @@ Follow these setup to run the Project:
   
   -------------------------------------------------------------------------------------------------------------------
 
-  All the CRUDL operations for users  performed using Mysql DB
+  All the CRUDL operations for patient  (performed using Mysql DB)
 
            To perform the CRUD operation use below link
 
-    1. User Login - POST -  http://localhost:8000/login - (send JSOn body along with this { "name":"abc", "password":"abc12"}) 
+    1. Doctor Login - POST -  http://localhost:8000/login - (send JSOn body along with this { "name":"abc", "password":"abc12"}) 
           This will provide the AuthToken
           -use the same Auth token and send Auth token in header field for all the CRUD operation
           -auth = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VyIjp7ImlkIjowLCJuYW1lIjoiIiwicGxhY2UiOiIiLCJlbWFpbCI6IiJ9fQ.Cn9ldjHPqFPTMC3-h21OZG5J-OO13quX8Xp3E6DRn5A
 
-    2. GET request- http://localhost:8000/api/v1/user   -  (/user - to get all user data)
+    2. GET request- http://localhost:8000/api/v1/patient   -  (/patient - to get all patient data for that particular doctor)
 
-    3. POST Request - http://localhost:8000/api/v1/user - (create new user send JSON body along with this { "name":"abc", "password":"abc12",  "place":"Bangalore","email":"abc@gmail.com" })
+    3. POST Request - http://localhost:8000/api/v1/patient - (create new Patient send JSON body along with this { "name":"abc", "place":"Bangalore" })- patient name should be unique (will create patient by mapping respective doctorId)
 
-    4. PUT Request - http://localhost:8000/api/v1/user/{id} - (update specific user data send Id in header and JSON body { "place":"xyz","email":"xyz@gmail.com" })
+    4. PUT Request - http://localhost:8000/api/v1/patient/{id} - (update specific patient data, if patient belongs to respective doctor. send Id in header and JSON body { "place":"xyz","name":"xyz" })
 
-    5. DELETE Request - http://localhost:8000/api/v1/user/{id} - (delete specific user data send UserId in header)
+    5. DELETE Request - http://localhost:8000/api/v1/patient/{id} - (delete specific patient data send patientId in header)
 
-    6. GET Specific user Data - http://localhost:8000/api/v1/user/{id}  -  (/user/{id} - to get specified user data by sending id in request header)
+    6. GET Specific patient Data - http://localhost:8000/api/v1/patient/{id}  -  (/patient/{id} - to get specified patient data by sending id in request header)

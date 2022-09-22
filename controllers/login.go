@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"chkdin/models"
-	"chkdin/service"
+	"DocCare/models"
+	"DocCare/service"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

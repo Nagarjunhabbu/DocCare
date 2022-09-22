@@ -1,10 +1,9 @@
 package models
 
-type User struct {
+type Patient struct {
 	Id    int    `json:"id"`
 	Name  string `json:"name"`
 	Place string `json:"place"`
-	Email string `json:"email"`
 }
 
 type Response struct {

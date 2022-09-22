@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"chkdin/models"
+	"DocCare/models"
 	"fmt"
 
 	"github.com/golang-jwt/jwt"
@@ -34,16 +34,11 @@ func (a Auth) AuthMiddleware() echo.MiddlewareFunc {
 			claims, ok := token.Claims.(jwt.MapClaims)
 
 			if token.Valid && ok {
-				user, ok := claims["user"].(map[string]interface{})
-				fmt.Print(claims["user"])
+				id, ok := claims["id"].(float64)
 				if !ok {
 					return c.JSON(401, r)
 				}
-				_, ok = user["id"].(float64)
-				if !ok {
-					return c.JSON(401, r)
-				}
-
+				c.Request().Header.Set("id", fmt.Sprint(id))
 			}
 
 			return next(c)

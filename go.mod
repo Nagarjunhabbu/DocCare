@@ -1,4 +1,4 @@
-module chkdin
+module DocCare
 
 go 1.17
 
